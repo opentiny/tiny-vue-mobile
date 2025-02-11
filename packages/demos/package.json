@@ -22,11 +22,9 @@
     "opentiny"
   ],
   "devDependencies": {
-    "@opentiny/vue-mobile": "workspace:~",
+    "@opentiny/vue-icon": "~3.21.0",
+    "@vueuse/head": "0.7.13",
     "typescript": "catalog:",
-    "vite": "catalog:",
-    "vite-plugin-dts": "^4.3.0",
-    "vite-svg-loader": "^5.1.0",
     "vue": "catalog:"
   }
 }

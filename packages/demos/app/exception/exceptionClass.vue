@@ -12,7 +12,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Exception } from '@opentiny/vue'
+import { Exception } from '@opentiny/vue-mobile'
 
 const imageUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet1.jpg`)
 const exceptionClass = ref('no-problem')

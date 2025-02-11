@@ -22,7 +22,7 @@ const findAllpage = (packagesPath) => {
       .replace(/@opentinyvue\/vue-vite-import/g, '@opentiny/vue-vite-import')
       .replace(/@opentinyvue\/vue-mobile/g, '@opentiny/vue-mobile')
       .replace(/@opentinyvue\/vue-theme-mobile/g, '@opentiny/vue-theme-mobile')
-      .replace(/\/tiny-vue-web-doc\//g, '/tiny-vue-web-doc-mobile/')
+      .replace(/\/tiny-vue-web-doc\//g, '/tiny-vue-theme-mobile/')
       .replace(/\.\/examples\/sites\//g, './sites/')
 
     fs.writeFileSync(packagesPath, result)
