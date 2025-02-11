@@ -50,8 +50,8 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",
     "@commitlint/config-conventional": "^18.4.3",
-    "@opentiny/vue-mobile": "1.0.0-alpha.6",
-    "@opentiny/vue-theme-mobile": "3.21.0-alpha.0",
+    "@opentiny/vue-mobile": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentinyvue/vue-docs": "^3.21.9",
     "@types/color": "^3.0.3",
     "@types/eslint": "^8.4.10",
