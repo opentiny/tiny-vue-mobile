@@ -26,3 +26,6 @@ yarn.lock
 package-lock.json
 
 *.tgz
+
+sites
+pnpm-lock.yaml

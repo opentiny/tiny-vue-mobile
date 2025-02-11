@@ -1,11 +1,19 @@
 {
-  "name": "@opentiny/vue-theme-mobile",
-  "version": "3.6.0",
+  "name": "opentiny-vue-mobile",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.14.2",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
-  "homepage": "https://opentiny.design/tiny-vue",
+  "author": "OpenTiny Team",
+  "license": "MIT",
+  "homepage": "https://opentiny.design/tiny-vue-mobile",
   "repository": {
     "type": "git",
-    "url": "https://github.com/opentiny/tiny-vue-theme-mobile"
+    "url": "git@github.com:opentiny/tiny-vue-theme-mobile.git"
+  },
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-vue-theme-mobile/issues"
   },
   "keywords": [
     "vue",
@@ -16,77 +24,79 @@
     "vue-components",
     "opentiny",
     "renderless-components",
-    "headless-components"
+    "mobile"
   ],
-  "author": "OpenTiny Team",
-  "license": "MIT",
-  "main": "index.css",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9.5"
+  },
   "scripts": {
-    "clean": "rimraf dist",
-    "build:theme": "gulp build --gulpfile build/gulp-dist.js",
-    "build": "npm run clean && npm run build:theme",
-    "build:fast": "npm run build && npm run release",
-    "lint": "eslint src/**/*{.vue,.js} --quiet",
-    "release": "node build/release.js",
-    "commit": "git-cz"
+    "dev": "pnpm -C sites start:mobile",
+    "preSite": "node ./script/preSite.js",
+    "build": "pnpm -C packages/mobile build",
+    "build:theme": "pnpm -C packages/theme-mobile build"
+  },
+  "dependencies": {
+    "@vue/composition-api": "1.7.2",
+    "color": "^4.2.3",
+    "cropperjs": "1.5.12",
+    "echarts": "5.4.1",
+    "echarts-liquidfill": "3.1.0",
+    "echarts-wordcloud": "2.0.0",
+    "fastdom": "1.0.11",
+    "shepherd.js": "11.0.1",
+    "streamsaver": "2.0.6"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "gulp": "^3.9.1",
+    "@antfu/eslint-config": "^0.38.6",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@opentinyvue/vue-docs": "^3.21.9",
+    "@types/color": "^3.0.3",
+    "@types/eslint": "^8.4.10",
+    "@types/node": "^18.11.18",
+    "@types/shelljs": "^0.8.12",
+    "@typescript-eslint/parser": "^6.12.0",
+    "@volar-plugins/eslint": "^2.0.0",
+    "@volar-plugins/prettier": "^2.0.0",
+    "@volar-plugins/prettyhtml": "^2.0.0",
+    "@vue/tsconfig": "^0.4.0",
+    "commitlint": "^18.4.3",
+    "depcheck": "1.4.3",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.0",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-clean-css": "^4.2.0",
-    "gulp-less": "^4.0.1",
+    "gulp-less": "^5.0.0",
+    "gulp-svg-inline": "^1.0.1",
+    "gulp-transform": "^3.0.5",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.0.0",
     "rimraf": "^3.0.2",
-    "eslint": "^8.25.0",
-    "eslint-plugin-vue": "^9.6.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^11.1.0 ",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-standard": "^5.0.0",
-    "prettier": "^2.2.1",
-    "babel-eslint": "^10.1.0",
-    "@commitlint/cli": "^17.3.0",
-    "@commitlint/config-conventional": "^17.3.0",
-    "commitizen": "^4.2.5",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "glob": "^8.0.3",
-    "husky": "^8.0.2",
-    "lint-staged": "^13.0.3"
+    "shelljs": "^0.8.5",
+    "shx": "^0.3.4",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vue": "catalog:",
+    "vue-tsc": "^1.6.5"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+  "pnpm": {
+    "packageExtensions": {
+      "vite-plugin-md": {
+        "peerDependenciesMeta": {
+          "@vitejs/plugin-vue": {
+            "optional": true
+          }
+        }
+      }
     }
-  },
-  "lint-staged": {
-    "*.{js,ts,jsx,tsx,vue}": [
-      "prettier --write"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
-  },
-  "resolutions": {
-    "graceful-fs": "4.2.2"
-  },
-  "overrides": {
-    "graceful-fs": "^4.2.10"
-  },
-  "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
+    "last 2 versions"
   ]
 }
