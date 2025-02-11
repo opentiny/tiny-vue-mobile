@@ -31,7 +31,7 @@ jobs:
       - name: prepare site for prod
         run: pnpm preSite alpha
       - name: Build site
-        run: export NODE_OPTIONS="--max-old-space-size=8192" && pnpm -C sites build
+        run: export NODE_OPTIONS="--max-old-space-size=8192" && pnpm -C sites build:mobile:page
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build with Jekyll

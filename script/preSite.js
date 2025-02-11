@@ -10,7 +10,6 @@ shell.cp('-R', 'node_modules/@opentinyvue/vue-docs', 'sites')
 // 删除一些不需要的依赖
 const pkg = JSON.parse(shell.cat('sites/package.json'))
 delete pkg.devDependencies['@opentiny-internal/unplugin-virtual-template']
-pkg.scripts.build = 'vite build --mode pages'
 shell.ShellString(JSON.stringify(pkg, null, 2)).to('sites/package.json')
 
 // 修改sites/vite.config.js
