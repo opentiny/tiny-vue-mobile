@@ -17,11 +17,6 @@ const findAllpage = (packagesPath) => {
   } else {
     const content = fs.readFileSync(packagesPath).toString('UTF-8')
     let result = content
-      .replace(/@opentiny\/vue/g, '@opentinyvue/vue')
-      .replace(/@opentinyvue\/vue-repl/g, '@opentiny/vue-repl')
-      .replace(/@opentinyvue\/vue-vite-import/g, '@opentiny/vue-vite-import')
-      .replace(/@opentinyvue\/vue-mobile/g, '@opentiny/vue-mobile')
-      .replace(/@opentinyvue\/vue-theme-mobile/g, '@opentiny/vue-theme-mobile')
       .replace(/\/tiny-vue-web-doc\//g, '/tiny-vue-theme-mobile/')
       .replace(/\.\/examples\/sites\//g, './sites/')
 
