@@ -1,0 +1,30 @@
+{
+  "name": "@opentiny/vue-mobile-demos",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
+  "author": "OpenTiny Team",
+  "license": "MIT",
+  "homepage": "https://opentiny.design/tiny-vue",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:opentiny/tiny-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-vue/issues"
+  },
+  "keywords": [
+    "vue3",
+    "frontend",
+    "component-library",
+    "components",
+    "vue-components",
+    "opentiny"
+  ],
+  "devDependencies": {
+    "@opentiny/vue-icon": "~3.21.0",
+    "@vueuse/head": "0.7.13",
+    "typescript": "catalog:",
+    "vue": "catalog:"
+  }
+}
