@@ -6,6 +6,6 @@
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
 function btnClick() {
-  TinyModal.alert({ message: '自定义标题', title: '自定义标题', tiny_mode: 'mobile' })
+  TinyModal.alert({ message: '自定义标题', title: '自定义标题' })
 }
 </script>

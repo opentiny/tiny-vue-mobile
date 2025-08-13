@@ -9,25 +9,25 @@
 <script setup lang="jsx">
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
+const Modal = TinyModal
+
 function baseClick() {
-  TinyModal.message({ message: '默认3000ms后自动关闭提示框', tiny_mode: 'mobile' })
+  Modal.message({ message: '默认3000ms后自动关闭提示框', status: 'info' })
 }
 
 function successClick() {
-  TinyModal.message({
+  Modal.message({
     message: '500ms后自动关闭提示框',
     status: 'success',
-    duration: '500',
-    tiny_mode: 'mobile'
+    duration: '500'
   })
 }
 
 function errorClick() {
-  TinyModal.message({
+  Modal.message({
     message: '5000ms后自动关闭提示框',
     status: 'error',
-    duration: '5000',
-    tiny_mode: 'mobile'
+    duration: '5000'
   })
 }
 </script>

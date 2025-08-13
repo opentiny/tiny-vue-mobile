@@ -10,8 +10,7 @@ function btnClick() {
     message: '可以拖动调整窗口大小',
     resize: true,
     height: 188,
-    width: 366,
-    tiny_mode: 'mobile'
+    width: 366
   })
 }
 </script>

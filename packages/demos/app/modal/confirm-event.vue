@@ -16,6 +16,6 @@ import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 const value1 = ref(false)
 
 function confirmClick() {
-  TinyModal.message({ message: '点击确定按钮时触发事件', tiny_mode: 'mobile' })
+  TinyModal.message({ message: '点击确定按钮时触发事件', status: 'info' })
 }
 </script>

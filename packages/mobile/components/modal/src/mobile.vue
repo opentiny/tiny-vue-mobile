@@ -17,6 +17,18 @@ import { iconFullscreenLeft, iconMinscreenLeft } from '@opentiny/vue-icon'
 import { modalProps } from './modal'
 import '@opentiny/vue-theme-mobile/modal/index.less'
 
+import {
+  iconHelpSolid,
+  iconSuccess,
+  iconError,
+  iconHelp,
+  iconLoadingShadow,
+  iconWarning,
+  iconClose,
+  iconFullscreenRight,
+  iconMinscreenRight
+} from '@opentiny/vue-icon'
+
 export default defineComponent({
   props: modalProps,
   provide() {
@@ -26,11 +38,20 @@ export default defineComponent({
     return setup({ props, context, renderless, api })
   },
   render() {
-    let { state, scopedSlots, vSize, type, resize, animat, showHeader } = this
+    let { state, scopedSlots, vSize, type, resize, animat, showHeader,_constants: constants, status } = this
     let { showFooter, title, message, lockScroll, lockView, mask, t } = this
     let { zoomLocat, visible, contentVisible, modalTop, isMsg } = state
     let defaultSlot = scopedSlots.default
     let footerSlot = scopedSlots.footer
+
+    const STATUS_MAPPING_COMPINENT = {
+      QUESTION: iconHelpSolid(),
+      INFO: iconHelp(),
+      SUCCESS: iconSuccess(),
+      WARNING: iconWarning(),
+      ERROR: iconError(),
+      LOADING: iconLoadingShadow()
+    }
 
     return h(
       'div',
@@ -41,6 +62,7 @@ export default defineComponent({
           `type__${type}`,
           {
             [`size__${vSize}`]: vSize,
+            [`status__${status}`]: typeof status === 'string',
             is__animat: animat,
             lock__scroll: lockScroll,
             lock__view: lockView,
@@ -97,13 +119,25 @@ export default defineComponent({
             h(
               'div',
               {
-                class: 'tiny-mobile-modal__body'
+                class: ['tiny-mobile-modal__body', type === 'message' ? 'is-message' : '']
               },
               [
-                isMsg
-                  ? h('div', {
-                      class: 'tiny-mobile-modal__status-wrapper'
-                    })
+                type === 'message'
+                  ? h(
+                      'div',
+                      {
+                        class: 'tiny-mobile-modal__status-wrapper'
+                      },
+                      [
+                        typeof status === 'string'
+                        ? h(STATUS_MAPPING_COMPINENT[status.toUpperCase()], {
+                            class: [constants.STATUS_MAPPING_CLASSS[status.toUpperCase()]]
+                          })
+                          : h(status, {
+                            class: ['tiny-mobile-modal__status-icon']
+                        })
+                      ]
+                    )
                   : null,
                 h(
                   'div',

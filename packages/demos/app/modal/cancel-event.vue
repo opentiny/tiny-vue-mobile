@@ -16,6 +16,6 @@ import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 const value1 = ref(false)
 
 function cancelClick() {
-  TinyModal.message({ message: '点击取消按钮时触发事件', tiny_mode: 'mobile' })
+  TinyModal.message({ message: '点击取消按钮时触发事件', status: 'info' })
 }
 </script>
