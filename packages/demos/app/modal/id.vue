@@ -6,6 +6,6 @@
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
 function btnClick() {
-  TinyModal.message({ message: '不允许重复点击', id: 'unique', tiny_mode: 'mobile' })
+  TinyModal.message({ message: '不允许重复点击', id: 'unique',  status: 'info' })
 }
 </script>

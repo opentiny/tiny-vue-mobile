@@ -6,6 +6,6 @@
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
 function btnClick() {
-  TinyModal.alert({ message: '最大化显示', fullscreen: true, tiny_mode: 'mobile' })
+  TinyModal.alert({ message: '最大化显示', fullscreen: true })
 }
 </script>

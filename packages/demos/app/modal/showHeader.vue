@@ -6,6 +6,6 @@
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
 function btnClick() {
-  TinyModal.alert({ message: '不显示头部', showHeader: false, tiny_mode: 'mobile' })
+  TinyModal.alert({ message: '不显示头部', showHeader: false  })
 }
 </script>

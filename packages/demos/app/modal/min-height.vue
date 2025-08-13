@@ -9,8 +9,7 @@ function btnClick() {
   TinyModal.alert({
     message: '提示框拖动最小高度为300',
     resize: true,
-    minHeight: 300,
-    tiny_mode: 'mobile'
+    minHeight: 300
   })
 }
 </script>

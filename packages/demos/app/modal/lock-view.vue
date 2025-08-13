@@ -9,8 +9,7 @@ function btnClick() {
   TinyModal.alert({
     message: '不锁界面不要遮罩层',
     lockView: false,
-    mask: false,
-    tiny_mode: 'mobile'
+    mask: false
   })
 }
 </script>

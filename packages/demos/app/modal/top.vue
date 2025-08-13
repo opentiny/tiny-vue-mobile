@@ -6,6 +6,6 @@
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
 function btnClick() {
-  TinyModal.message({ message: '距离顶部的位置为500', top: 500, tiny_mode: 'mobile' })
+  TinyModal.message({ message: '距离顶部的位置为500', top: 500 })
 }
 </script>
