@@ -26,9 +26,10 @@ import {
   menuHandle,
   close,
   selectOption,
-  confirm,
+  confirmFn,
   actionSelectOption,
   hide,
+  cancelFn,
   handleClose
 } from './index'
 
@@ -41,9 +42,10 @@ export const api = [
   'menuHandle',
   'close',
   'selectOption',
-  'confirm',
+  'confirmFn',
   'actionSelectOption',
-  'hide'
+  'hide',
+  'cancelFn',
 ]
 
 export const renderless = (
@@ -67,11 +69,12 @@ export const renderless = (
     visibleHandle: visibleHandle({ emit, state }),
     watchVisible: watchVisible({ emit, state }),
     menuHandle: menuHandle({ state, emit }),
-    confirm: confirm({ state, api }),
+    confirmFn: confirmFn({ api }),
     selectOption: selectOption({ emit, props }),
     actionSelectOption: actionSelectOption({ emit }),
     hide: hide({ api }),
     close: close({ api }),
+    cancelFn: cancelFn({ api }),
     handleClose: handleClose({ vm, emit, props })
   })
 

@@ -22,7 +22,7 @@
       :style="[state.sheetContentStyle]"
       ref="scrollMenu"
     >
-      <div :class="['tiny-mobile-action-sheet__menu', ellipsis ? 'is-ellipsis' : '']">
+      <div v-if="menus.length" :class="['tiny-mobile-action-sheet__menu', ellipsis ? 'is-ellipsis' : '']">
         <div
           :class="[
             'tiny-mobile-action-sheet__item',
@@ -38,6 +38,12 @@
             {{ item[textField] }}
           </slot>
         </div>
+      </div>
+      <slot name="content"></slot>
+      <div v-if="!menus.length" class="tiny-mobile-action-sheet__bottom">
+        <tiny-button type="text" @click="cancelFn">{{ t('ui.actionSheet.cancel') }}</tiny-button>
+        <div class="tiny-mobile-action-sheet__bottom-divider"></div>
+        <tiny-button type="text" @click="confirmFn">确定</tiny-button>
       </div>
     </div>
     <div class="tiny-mobile-action-sheet__action" v-if="contentPosition">
@@ -57,10 +63,14 @@ import '@opentiny/vue-theme-mobile/action-sheet/index.less'
 import BScroll from '@better-scroll/core'
 import { actionSheetProps } from './action-sheet'
 import type { IActionSheetApi } from './action-sheet'
+import Button from '../../button'
 
 export default defineComponent({
   name: $prefix + 'ActionSheet',
   props: actionSheetProps,
+  components: { 
+    TinyButton: Button
+  },
   setup(props, context) {
     return setup({ props, context, renderless, api, extendOptions: { BScroll } }) as unknown as IActionSheetApi
   }
