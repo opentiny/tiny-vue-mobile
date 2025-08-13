@@ -115,9 +115,9 @@ export const cancelFn =
 
 
 export const confirmFn =
-  ({  api }) =>
+  ({  api, state }) =>
   () => {
-    api.handleClose('confirm')
+    api.handleClose('confirm', state)
   }
 
 export const actionSelectOption =

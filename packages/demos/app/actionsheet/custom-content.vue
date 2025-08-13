@@ -30,8 +30,8 @@ function cancelFn() {
   console.log('取消')
 }
 
-function confirmFn() {
-  console.log('确定')
+function confirmFn(msg) {
+  console.log('确定:', msg)
 }
 
 function fn() {

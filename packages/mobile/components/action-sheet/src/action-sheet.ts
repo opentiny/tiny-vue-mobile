@@ -107,7 +107,7 @@ export interface IActionSheetApi {
   visibleHandle: ({ emit, state }: { emit: IActionSheetRenderlessParamUtils['emit']; state: IActionSheetState }) => void
   watchVisible: (value: boolean) => void
   menuHandle: (item: any) => void
-  confirm: () => void
+  confirmFn: () => void
   selectOption: (option: any) => void
   actionSelectOption: (option: any, index: any) => void
   close: () => void
