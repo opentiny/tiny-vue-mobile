@@ -16,11 +16,10 @@ import type { toggle, computedWarpClasses, computedInnerClasses, computedStyle }
 export type { ISharedRenderlessParamHooks } from '@mobile-root/shared.type'
 
 export const $constants = {
-  PC_PREFIXCLS: 'tiny-switch',
   MOBILE_PREFIXCLS: 'tiny-mobile-switch',
-  Mode: 'pc',
-  prefixcls(mode) {
-    return mode === this.Mode ? this.PC_PREFIXCLS : this.MOBILE_PREFIXCLS
+  Mode: 'mobile',
+  prefixcls() {
+    return this.MOBILE_PREFIXCLS
   }
 }
 
