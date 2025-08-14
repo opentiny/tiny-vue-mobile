@@ -37,7 +37,6 @@ export const tagProps = {
   },
   beforeDelete: Function,
   value: [Number, String],
-
   // mobile
   mini: {
     type: Boolean,
@@ -46,7 +45,11 @@ export const tagProps = {
   maxWidth: {
     type: [String, Number],
     default: null
-  }
+  },
+  customStyle: {
+    type: Object,
+    default: () => ({})
+  },
 }
 
 export interface ITagState {
@@ -54,7 +57,8 @@ export interface ITagState {
   show: boolean
   selected: boolean
   text: string
-  color: string
+  color: string,
+  customStyle: object,
   mini: boolean
   maxWidth: string | number
 }

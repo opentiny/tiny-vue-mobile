@@ -13,7 +13,10 @@
 <template>
   <div
     :class="['tiny-mobile-tag', 'tiny-mobile-tag-' + state.color, state.mini ? 'tiny-mobile-tag-mini' : null]"
-    :style="{ maxWidth: state.maxWidth ? `${state.maxWidth}px` : null }"
+    :style="{ 
+      maxWidth: state.maxWidth ? `${state.maxWidth}px` : null, 
+      ...customStyle,
+    }"
   >
     <slot>{{ state.text }}</slot>
   </div>
