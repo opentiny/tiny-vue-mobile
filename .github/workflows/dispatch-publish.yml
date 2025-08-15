@@ -66,11 +66,13 @@ jobs:
 
       # 步骤7: 构建组件
       - name: Run Build Components
-        run: pnpm build
+        run: pnpm build && pnpm build:theme
 
       # 步骤8: 发布组件到NPM
       - name: Publish components
-        run: pnpm --filter @opentiny/tiny-vue-mcp publish --tag ${{ inputs.tag }} --access=public --no-git-checks
+        run: |
+          pnpm --filter @opentiny/vue-mobile publish --tag ${{ inputs.tag }} --access=public --no-git-checks
+          pnpm -C packages/mobile/dist publish --tag ${{ inputs.tag }} --access=public --no-git-checks
         env:
           # 使用NPM令牌进行身份验证
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TINY_VUE_MCP_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
