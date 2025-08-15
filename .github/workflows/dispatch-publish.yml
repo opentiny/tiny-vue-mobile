@@ -1,13 +1,25 @@
 # 工作流名称
-name: Auto Publish
+name: Dispatch Publish
 # 运行时显示的名称
-run-name: Auto Publish
+run-name: Dispatch Publish
 
 # 触发条件配置
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '选择发布版本的tag (alpha/beta/latest)'
+        required: true
+        default: 'alpha'
+        type: choice
+        options:
+          - alpha
+          - beta
+          - latest
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.sha }}
+  cancel-in-progress: true
 
 # 定义工作流中的作业
 jobs:
@@ -58,15 +70,9 @@ jobs:
 
       # 步骤8: 发布组件到NPM
       - name: Publish components
-        run: pnpm pub && pnpm pub:theme
+        run: |
+          pnpm --filter @opentiny/vue-mobile publish --tag ${{ inputs.tag }} --access=public --no-git-checks
+          pnpm -C packages/mobile/dist publish --tag ${{ inputs.tag }} --access=public --no-git-checks
         env:
           # 使用NPM令牌进行身份验证
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref_name }}
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
