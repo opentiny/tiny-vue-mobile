@@ -40,7 +40,7 @@
     backface-visibility: hidden;
     transition: transform 0.3s;
     z-index: 500;
-    overflow-y: scroll;
+    overflow-y: auto;
     backface-visibility: hidden;
     border-radius: 16px 16px 0px 0px;
 
@@ -107,6 +107,18 @@
     width: 100%;
     position: absolute;
     background-color: var(--tvm-ActionSheet-action-bg-color, #fff);
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 16px 16px 16px;
+    &-divider {
+      width: 1px;
+      height: 36px;
+      background-color: var(--tvm-ActionSheet-action-bottom-divider-color);     /* 通过背景色实现 */
+      display: inline-block;         /* 或 block */
+    }
   }
 }
 

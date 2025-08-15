@@ -89,6 +89,15 @@ export default {
             'en-US': 'Click'
           },
           demoId: 'slot-item'
+        },
+         {
+          name: 'content',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>自定义内容插槽</p>',
+            'en-US': 'Click'
+          },
+          demoId: 'custom-content'
         }
       ]
     }
@@ -141,6 +150,18 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['slot-action.vue']
+    },
+      {
+      demoId: 'custom-content',
+      name: {
+        'zh-CN': '自定义内容插槽',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>通过<code>content</code>插槽自定义内容<p>',
+        'en-US': '<p>Customize content through slots</p>'
+      },
+      codeFiles: ['custom-content.vue']
     }
   ]
 }

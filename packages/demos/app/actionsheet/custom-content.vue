@@ -1,17 +1,21 @@
 <template>
   <div class="tiny-mobile-action-sheet-demo">
-    <div class="page__hd">
-      <p class="page__desc">点击事件获取返回值</p>
-    </div>
     <tiny-button _mode="mobile" @click="fn">cliclk me!</tiny-button>
     <tiny-action-sheet
       _mode="mobile"
       v-model="activeName"
-      :menus="menus"
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
-      @click="clickItem"
-    ></tiny-action-sheet>
+      @cancel="cancelFn"
+      @confirm="confirmFn"
+    >
+      <template #content>
+        <div style="height: 300px;padding: 20px;">
+          <span>标题</span>
+          <div>1234</div>
+        </div>
+      </template>
+    </tiny-action-sheet>
   </div>
 </template>
 
@@ -21,33 +25,19 @@ import { TinyActionSheet, TinyButton } from '@opentiny/vue-mobile'
 
 const activeName = ref('')
 const boxVisibility = ref(false)
-const menus = ref([
-  {
-    id: 1,
-    label: '我是小花,我是小花,我是小花,我是小花,我是小花,我是小花,我是小花'
-  },
-  {
-    id: 2,
-    label: '我是小树'
-  },
-  {
-    id: 3,
-    label: '我是小草'
-  },
-  {
-    id: 4,
-    label: '我是小叶',
-    warn: true
-  }
-])
+
+function cancelFn() {
+  console.log('取消')
+}
+
+function confirmFn(msg) {
+  console.log('确定:', msg)
+}
 
 function fn() {
   boxVisibility.value = true
 }
 
-function clickItem(value) {
-  console.log(value, '获取了当前点击的返回值')
-}
 </script>
 
 <style>

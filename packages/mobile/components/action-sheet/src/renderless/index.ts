@@ -107,8 +107,15 @@ export const selectOption =
     emit('click', option)
   }
 
-export const confirm =
-  ({ state, api }) =>
+export const cancelFn =
+  ({ api }) =>
+  () => {
+    api.handleClose('cancel')
+  }
+
+
+export const confirmFn =
+  ({  api, state }) =>
   () => {
     api.handleClose('confirm', state)
   }
