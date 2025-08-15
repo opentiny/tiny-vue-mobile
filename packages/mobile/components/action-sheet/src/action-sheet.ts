@@ -108,6 +108,7 @@ export interface IActionSheetApi {
   watchVisible: (value: boolean) => void
   menuHandle: (item: any) => void
   confirmFn: () => void
+  cancelFn: () => void
   selectOption: (option: any) => void
   actionSelectOption: (option: any, index: any) => void
   close: () => void
