@@ -36,7 +36,7 @@
     "build": "pnpm -C packages/mobile build",
     "pub": "pnpm -C packages/mobile publish --no-git-checks --access=public",
     "build:theme": "pnpm -C packages/theme-mobile build:fast",
-    "pub:theme": "pnpm -C packages/mobile/dist publish --no-git-checks --access=public"
+    "pub:theme": "pnpm -C packages/theme-mobile/dist publish --no-git-checks --access=public"
   },
   "dependencies": {
     "@vue/composition-api": "1.7.2",
