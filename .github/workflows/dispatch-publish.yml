@@ -71,7 +71,8 @@ jobs:
       # 步骤8: 发布组件到NPM
       - name: Publish components
         run: |
-          pnpm -C packages/theme-mobile/dist publish --tag ${{ inputs.tag }} --access=public --no-git-checks
+          pnpm pub --tag ${{ inputs.tag }}
+          pnpm pub:theme --tag ${{ inputs.tag }}
         env:
           # 使用NPM令牌进行身份验证
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
