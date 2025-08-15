@@ -45,11 +45,7 @@ export const tagProps = {
   maxWidth: {
     type: [String, Number],
     default: null
-  },
-  customStyle: {
-    type: Object,
-    default: () => ({})
-  },
+  }
 }
 
 export interface ITagState {
@@ -57,8 +53,7 @@ export interface ITagState {
   show: boolean
   selected: boolean
   text: string
-  color: string,
-  customStyle: object,
+  color: string
   mini: boolean
   maxWidth: string | number
 }

@@ -50,7 +50,7 @@ export default {
           demoId: 'basic-usage'
         },
         {
-          name: 'custom-style',
+          name: 'style',
           type: 'object',
           defaultValue: '',
           desc: {

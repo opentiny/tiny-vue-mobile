@@ -1,14 +1,14 @@
 <template>
   <div class="tiny-tag-demo">
-    <tiny-tag color="default" :custom-style="styleObj"> 标签一 </tiny-tag>
+    <tiny-tag color="default" :style="styleObj"> 标签一 </tiny-tag>
     <br/>
-    <tiny-tag color="default" :custom-style="styleObj2"> 标签二 </tiny-tag>
+    <tiny-tag color="default" :style="styleObj2"> 标签二 </tiny-tag>
     <br/>
-    <tiny-tag color="default" :custom-style="styleObj3"> 标签二 </tiny-tag>
+    <tiny-tag color="default" :style="styleObj3"> 标签二 </tiny-tag>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { TinyTag } from '@opentiny/vue-mobile'
 
 const styleObj = {

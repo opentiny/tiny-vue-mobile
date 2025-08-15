@@ -26,8 +26,7 @@ export const renderless = (
     mini: props.mini,
     color: props.color,
     text: props.text,
-    maxWidth: props.maxWidth,
-    customStyle: props.customStyle
+    maxWidth: props.maxWidth
   })
 
   const api: ITagApi = {
