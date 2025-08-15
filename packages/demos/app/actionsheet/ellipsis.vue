@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup lang="ts">
 import { ref } from 'vue'
 import { TinyActionSheet, TinyButton } from '@opentiny/vue-mobile'
 
