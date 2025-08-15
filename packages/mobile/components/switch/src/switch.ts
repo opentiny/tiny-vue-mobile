@@ -17,7 +17,6 @@ export type { ISharedRenderlessParamHooks } from '@mobile-root/shared.type'
 
 export const $constants = {
   MOBILE_PREFIXCLS: 'tiny-mobile-switch',
-  Mode: 'mobile',
   prefixcls() {
     return this.MOBILE_PREFIXCLS
   }
