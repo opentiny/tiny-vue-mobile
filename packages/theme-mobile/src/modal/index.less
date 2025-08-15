@@ -156,6 +156,23 @@
       }
     }
 
+    // status图标色  弹窗和消息的颜色一致，共用以下颜色
+    &.status__success .@{modal-prefix-cls}__status-wrapper svg {
+      fill: #5cb300;
+    }
+    &.status__warning .@{modal-prefix-cls}__status-wrapper svg {
+      fill: #ff8800;
+    }
+    &.status__error .@{modal-prefix-cls}__status-wrapper svg {
+      fill:#f23030;
+    }
+    &.status__info .@{modal-prefix-cls}__status-wrapper svg {
+      fill: #1476ff;
+    }
+    &.status__question .@{modal-prefix-cls}__status-wrapper svg {
+      fill: #191919;
+    }
+
     &.type__message {
       text-align: center;
 
@@ -168,6 +185,7 @@
         transform: translateY(-10%);
 
         .@{modal-prefix-cls}__body {
+          padding: 0;
           &:after {
             content: '';
             display: block;
@@ -178,15 +196,31 @@
           }
         }
 
-        .@{modal-prefix-cls}__content {
-          max-width: 800px;
-          float: left;
-        }
-      }
+        .@{modal-prefix-cls}__status-wrapper {
+          display: flex;
+          align-items: center;
+          margin-right: 8px;
 
-      .@{modal-prefix-cls}__status-wrapper {
-        font-size: var(--tvm-Modal-small-btn-font-size);
-        padding-right: 10px;
+          svg {
+            font-size: 16px;
+          }
+
+          .@{modal-prefix-cls}-svg__refresh {
+            fill: #191919;
+          }
+        }
+
+        .@{modal-prefix-cls}__content {
+          width: 100%;
+          max-width: 800px;
+          flex-grow: 1;
+
+          .@{modal-prefix-cls}__text {
+            color: var(--tv-Modal-msg-box-text-color);
+            font-size: var(--tv-Modal-msg-box-font-size);
+            font-weight: var(--tv-Modal-msg-box-font-weight);
+          }
+        }
       }
     }
 
@@ -258,7 +292,6 @@
     pointer-events: auto;
     visibility: hidden;
     opacity: 0;
-    padding-top: 12px;
 
     &.is__drag {
       cursor: move;
@@ -296,10 +329,8 @@
   }
 
   &__content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
+    -webkit-box-flex: 1;
     flex-grow: 1;
   }
 
@@ -312,7 +343,7 @@
   &__body {
     display: flex;
     flex-grow: 1;
-    padding: 20px 44px 28px 44px;
+    padding: 0px 32px;
   }
 
   &__header {
@@ -321,10 +352,10 @@
     font-size: var(--tvm-Modal-header-font-size);
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-weight: 500;
+    justify-content: left;
+    font-weight: 700;
     border-bottom: none;
-    padding: 20px 44px 0px 44px;
+    padding: 32px 32px 24px;
     user-select: none;
   }
 
@@ -359,7 +390,7 @@
   &__footer {
     flex-shrink: 0;
     text-align: center;
-    padding-bottom: 32px;
+    padding: 24px 32px 32px;
 
     .@{button-prefix-cls} {
       border-radius: 18px;

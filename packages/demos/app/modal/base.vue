@@ -12,27 +12,26 @@
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
 function baseClick1() {
-  TinyModal.alert({ message: '单行居中对齐，多行居左对齐', showHeader: false, tiny_mode: 'mobile' })
+  TinyModal.alert({ message: '单行居中对齐，多行居左对齐', showHeader: false })
 }
 
 function baseClick2() {
-  TinyModal.alert({ message: '单行居中对齐，多行居左对齐', title: '标题', tiny_mode: 'mobile' })
+  TinyModal.alert({ message: '单行居中对齐，多行居左对齐', title: '标题' })
 }
 
 function baseClick3() {
   TinyModal.alert({
     message:
       '单行居中对齐，多行居左对齐,单行居中对齐，多行居左对齐单行居中对齐，多行居左对齐单行居中对齐，多行居左对齐',
-    title: '标题',
-    tiny_mode: 'mobile'
+    title: '标题'
   })
 }
 
 function baseClick4() {
-  TinyModal.confirm({ message: '您确定要删除吗？', tiny_mode: 'mobile' }).then((res) => {})
+  TinyModal.confirm({ message: '您确定要删除吗？' }).then((res) => {})
 }
 
 function baseClick5() {
-  TinyModal.confirm({ message: '您确定要删除吗？', showHeader: false, tiny_mode: 'mobile' }).then((res) => {})
+  TinyModal.confirm({ message: '您确定要删除吗？', showHeader: false }).then((res) => {})
 }
 </script>

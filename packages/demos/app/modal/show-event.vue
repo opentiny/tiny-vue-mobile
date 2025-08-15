@@ -16,6 +16,6 @@ import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 const value1 = ref(false)
 
 function showClick() {
-  TinyModal.message({ message: '在窗口显示时触发事件', tiny_mode: 'mobile' })
+  TinyModal.message({ message: '在窗口显示时触发事件', status: 'info' })
 }
 </script>

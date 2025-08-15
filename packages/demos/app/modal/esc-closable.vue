@@ -6,6 +6,6 @@
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
 function btnClick() {
-  TinyModal.alert({ message: '按 Esc 键可以关闭', escClosable: true, tiny_mode: 'mobile' })
+  TinyModal.alert({ message: '按 Esc 键可以关闭', escClosable: true })
 }
 </script>

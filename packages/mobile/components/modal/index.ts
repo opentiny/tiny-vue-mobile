@@ -11,16 +11,68 @@
  */
 
 import { createComponent, setupComponent } from '@mobile-root/common'
+import type { ComponentPublicInstance } from '@mobile-root/common'
 import { MsgQueue } from './src/renderless'
 import TINYModal from './src/mobile.vue'
+import { version } from "../../package.json";
+interface TINYModalInstance extends ComponentPublicInstance {
+  version: string
+  model: {
+    prop: string
+    event: string
+  }
+  tiny_mode?: boolean
+  tiny_theme?: string
+  installed: boolean
+  alert: (message: string | ModalOptions, title?: string, options?: ModalOptions) => ModalPromise
+  confirm: (message: string | ModalOptions, title?: string, options?: ModalOptions) => ModalPromise
+  message: (message: string | ModalOptions, title?: string, options?: ModalOptions) => ModalPromise
+  install: (Vue: any) => void
+}
 
-export function Modal(options) {
+
+// 扩展TINYModal类型
+const TINYModalComponent = TINYModal as unknown as TINYModalInstance
+
+TINYModalComponent.version = version
+
+TINYModalComponent.model = {
+  prop: 'modelValue',
+  event: 'update:modelValue'
+}
+
+interface ModalPromise extends Promise<string> {
+  vm?: ComponentPublicInstance
+}
+
+
+interface ModalOptions {
+  id?: string
+  events?: {
+    hide?: (params: any) => void
+    confirm?: (params: any) => void
+    show?: (params: any) => void
+  }
+  componentType?: 'alert' | 'confirm' | 'message'
+  message?: string
+  title?: string
+  showFooter?: boolean
+  type?: string
+  status?: string
+  mask?: boolean
+  lockView?: boolean
+  showHeader?: boolean
+  showClose?: boolean
+  [key: string]: any
+}
+
+export function Modal(options: ModalOptions): ModalPromise {
   const modalPromise = new Promise((resolve) => {
     if (options && options.id && MsgQueue.some((comp) => comp.id === options.id)) {
       resolve('exist')
     } else {
       let events = options.events || {}
-      let $modal
+      let $modal: ComponentPublicInstance
 
       options.events = Object.assign({}, events, {
         hide(params) {
@@ -42,27 +94,30 @@ export function Modal(options) {
         el: document.createElement('div'),
         propsData: Object.assign(
           {
-            'tiny_mode': TINYModal.tiny_mode,
-            'tiny_theme': TINYModal.tiny_theme
+            'tiny_mode': TINYModalComponent.tiny_mode,
+            'tiny_theme': TINYModalComponent.tiny_theme
           },
           options
         ),
-        component: TINYModal
+        component: TINYModalComponent
       })
 
-      const open = $modal.open
+      const open = $modal['open'] as Function
       if (open) {
         open()
       }
-      setTimeout(() => (modalPromise.vm = $modal), 0)
+      setTimeout(() => {
+        ;(modalPromise as ModalPromise).vm = $modal
+      }, 0)
     }
-  })
+  }) as ModalPromise
   return modalPromise
 }
 const modal = Modal
-const types = ['alert', 'confirm', 'message']
+const types = ['alert', 'confirm', 'message'] as const
+type ModalType = (typeof types)[number]
 
-const defOpts = {
+const defOpts: Record<ModalType, Partial<ModalOptions>> = {
   alert: {
     showFooter: true,
     type: 'alert'
@@ -82,8 +137,12 @@ const defOpts = {
 }
 
 types.forEach((type) => {
-  TINYModal[type] = Modal[type] = function (message, title, options) {
-    let opts
+   TINYModalComponent[type] = Modal[type] = function (
+    message: string | ModalOptions,
+    title?: string,
+    options?: ModalOptions
+  ): ModalPromise {
+    let opts: Partial<ModalOptions> = {}
 
     if (typeof message === 'object' && message !== null) {
       opts = message
@@ -109,20 +168,28 @@ export const alert = (Modal as any).alert
 export const message = (Modal as any).message
 export const confirm = (Modal as any).confirm
 
-TINYModal.installed = false
-setupComponent.TINYModal = {
-  install(Vue) {
-    if (TINYModal.installed) return
+
+interface SetupComponent {
+  TINYModal: {
+    install: (Vue: any) => void
+    init: (root: any) => void
+  }
+}
+
+TINYModalComponent.installed = false
+;(setupComponent as SetupComponent).TINYModal = {
+  install(Vue: any) {
+    if (TINYModalComponent.installed) return
     // vue3 或 vue2
     const isVue2 = !!Vue.component
     const tinyMode = isVue2 ? Vue.prototype.tiny_mode : Vue.config.globalProperties.tiny_mode
     const tinyTheme = isVue2 ? Vue.prototype.tiny_theme : Vue.config.globalProperties.tiny_theme
     const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
-    TINYModal.tiny_mode = specifyPc || (tinyMode && tinyMode.value)
-    TINYModal.tiny_theme = tinyTheme && tinyTheme.value
-    TINYModal.installed = true
+    TINYModalComponent.tiny_mode = specifyPc || (tinyMode && tinyMode.value)
+    TINYModalComponent.tiny_theme = tinyTheme && tinyTheme.value
+    TINYModalComponent.installed = true
   },
-  init(root) {
+  init(root: any) {
     let prefix = root.$TinyModalApiPrefix || root.$apiPrefix || '$'
 
     root[`${prefix}alert`] = (Modal as any).alert
@@ -131,8 +198,7 @@ setupComponent.TINYModal = {
   }
 }
 
-TINYModal.install = function (Vue) {
-  Vue.component(TINYModal.name, TINYModal)
+TINYModalComponent.install = function (Vue: any) {
+  Vue.component(TINYModalComponent.name, TINYModalComponent)
 }
-
-export default TINYModal
+export default TINYModalComponent

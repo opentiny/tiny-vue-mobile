@@ -10,14 +10,14 @@
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
 function alertClick() {
-  TinyModal.alert({ message: 'alert 弹框', title: '弹框', tiny_mode: 'mobile' })
+  TinyModal.alert({ message: 'alert 弹框', title: '弹框' })
 }
 
 function messageClick() {
-  TinyModal.message({ message: 'message 提示框', title: '弹框', tiny_mode: 'mobile' })
+  TinyModal.message({ message: 'message 提示框', title: '弹框' })
 }
 
 function confirmClick() {
-  TinyModal.confirm({ message: '您确定要删除吗？', title: '确定框', tiny_mode: 'mobile' }).then((res) => {})
+  TinyModal.confirm({ message: '您确定要删除吗？', title: '确定框' }).then((res) => {})
 }
 </script>

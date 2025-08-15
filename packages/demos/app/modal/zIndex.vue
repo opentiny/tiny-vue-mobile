@@ -6,6 +6,6 @@
 import { TinyButton, TinyModal } from '@opentiny/vue-mobile'
 
 function btnClick() {
-  TinyModal.alert({ message: 'zIndex的值为500', zIndex: 500, tiny_mode: 'mobile' })
+  TinyModal.alert({ message: 'zIndex的值为500', zIndex: 500 })
 }
 </script>
