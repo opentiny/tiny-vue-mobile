@@ -69,7 +69,7 @@ export const renderless = (
     visibleHandle: visibleHandle({ emit, state }),
     watchVisible: watchVisible({ emit, state }),
     menuHandle: menuHandle({ state, emit }),
-    confirmFn: confirmFn({ api }),
+    confirmFn: confirmFn({ api, state }),
     selectOption: selectOption({ emit, props }),
     actionSelectOption: actionSelectOption({ emit }),
     hide: hide({ api }),
