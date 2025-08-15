@@ -50,13 +50,14 @@ export default {
           demoId: 'basic-usage'
         },
         {
-          name: 'theme',
-          type: 'string',
+          name: 'style',
+          type: 'object',
           defaultValue: '',
           desc: {
-            'zh-CN': '彩色标签，该属性的可选值为 pink、purple、cyan',
-            'en-US': 'Color label. The value can be pink, purple, or cyan.'
-          }
+            'zh-CN': '自定义标签样式',
+            'en-US': 'Custom Tag Style'
+          },
+          demoId: 'custom-style'
         }
       ],
       events: [],
@@ -123,6 +124,18 @@ export default {
         'en-US': 'Mini'
       },
       codeFiles: ['mini.vue']
+    },
+    {
+      demoId: 'custom-style',
+      name: {
+        'zh-CN': '自定义标签样式',
+        'en-US': 'Custom Tag Style'
+      },
+      desc: {
+        'zh-CN': '自定义标签样式',
+        'en-US': 'Custom Tag Style'
+      },
+      codeFiles: ['custom-style.vue']
     }
   ],
   types: [

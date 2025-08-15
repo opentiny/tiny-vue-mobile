@@ -37,7 +37,6 @@ export const tagProps = {
   },
   beforeDelete: Function,
   value: [Number, String],
-
   // mobile
   mini: {
     type: Boolean,
