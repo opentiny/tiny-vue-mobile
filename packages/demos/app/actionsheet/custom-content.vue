@@ -1,9 +1,7 @@
 <template>
   <div class="tiny-mobile-action-sheet-demo">
-    <tiny-button _mode="mobile" @click="fn">cliclk me!</tiny-button>
+    <tiny-button @click="fn">cliclk me!</tiny-button>
     <tiny-action-sheet
-      _mode="mobile"
-      v-model="activeName"
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
       @cancel="cancelFn"
@@ -22,7 +20,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { TinyActionSheet, TinyButton } from '@opentiny/vue-mobile'
-
+0
 const activeName = ref('')
 const boxVisibility = ref(false)
 

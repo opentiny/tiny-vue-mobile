@@ -4,9 +4,8 @@
       <h1 class="page__title">上滑列表</h1>
       <p class="page__desc">弹出式菜单</p>
     </div>
-    <tiny-button _mode="mobile" @click="fn" type="primary" size="large">上滑列表</tiny-button>
+    <tiny-button @click="fn" type="primary" size="large">上滑列表</tiny-button>
     <tiny-action-sheet
-      _mode="mobile"
       v-model="activeName"
       :menus="menus"
       :visible="boxVisibility"
