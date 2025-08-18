@@ -17,7 +17,7 @@ const findAllpage = (packagesPath) => {
   } else {
     const content = fs.readFileSync(packagesPath).toString('UTF-8')
     let result = content
-      .replace(/\/tiny-vue-web-doc\//g, '/tiny-vue-theme-mobile/')
+      .replace(/\/tiny-vue-web-doc\//g, '/tiny-vue-mobile/')
       .replace(/\.\/examples\/sites\//g, './sites/')
 
     fs.writeFileSync(packagesPath, result)
