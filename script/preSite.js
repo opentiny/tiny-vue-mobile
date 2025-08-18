@@ -5,7 +5,7 @@ const mode = process.argv[2] || 'dev'
 shell.rm('-rf', 'sites')
 
 // 复制@opentiny/vue-docs包到本地
-shell.cp('-R', 'node_modules/@opentinyvue/vue-docs', 'sites')
+shell.cp('-R', 'node_modules/@opentiny/vue-docs', 'sites')
 
 // 删除一些不需要的依赖
 const pkg = JSON.parse(shell.cat('sites/package.json'))
@@ -36,8 +36,8 @@ shell.ShellString(newConfigJs).to(file)
 
 // const mobileVersion = 'latest'
 // const themeVersion = 'latest'
-const mobileVersion = '1.0.0-alpha.6'
-const themeVersion = '3.21.0-alpha.0'
+const mobileVersion = '1.0.0-alpha.10'
+const themeVersion = '1.0.0-alpha.10'
 
 if (mode === 'alpha') {
   const rootPkg = JSON.parse(shell.cat('package.json'))
