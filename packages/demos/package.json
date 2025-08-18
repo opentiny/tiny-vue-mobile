@@ -22,7 +22,7 @@
     "opentiny"
   ],
   "devDependencies": {
-    "@opentiny/vue-icon": "~3.21.0",
+    "@opentiny/vue-icon": "~3.25.0",
     "@vueuse/head": "0.7.13",
     "typescript": "catalog:",
     "vue": "catalog:"

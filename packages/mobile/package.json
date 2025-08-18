@@ -38,8 +38,8 @@
     "@better-scroll/core": "^2.5.0",
     "@better-scroll/wheel": "^2.5.0",
     "xss": "1.0.14",
-    "@opentiny/vue-icon": "^3.21.0",
-    "@opentiny/vue-locale": "^3.21.0"
+    "@opentiny/vue-icon": "^3.25.0",
+    "@opentiny/vue-locale": "^3.25.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",

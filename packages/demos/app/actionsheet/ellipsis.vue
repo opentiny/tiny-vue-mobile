@@ -3,9 +3,8 @@
     <div class="page__hd">
       <p class="page__desc">超长文字</p>
     </div>
-    <tiny-button _mode="mobile" @click="fn">cliclk me!</tiny-button>
+    <tiny-button @click="fn">click me!</tiny-button>
     <tiny-action-sheet
-      _mode="mobile"
       v-model="activeName"
       :menus="menus"
       ellipsis
