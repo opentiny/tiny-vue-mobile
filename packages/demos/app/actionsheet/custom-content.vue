@@ -3,7 +3,6 @@
     <tiny-button @click="fn">click me!</tiny-button>
     <tiny-action-sheet
       :visible="boxVisibility"
-      @update:visible="boxVisibility = $event"
       @cancel="cancelFn"
       @confirm="confirmFn"
     >
@@ -25,10 +24,12 @@ const activeName = ref('')
 const boxVisibility = ref(false)
 
 function cancelFn() {
+  boxVisibility.value = false
   console.log('取消')
 }
 
 function confirmFn(msg) {
+  boxVisibility.value = false
   console.log('确定:', msg)
 }
 

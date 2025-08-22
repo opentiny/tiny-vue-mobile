@@ -54,7 +54,7 @@
     "@commitlint/config-conventional": "^18.4.3",
     "@opentiny/vue-mobile": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
-    "@opentinyvue/vue-docs": "^3.21.9",
+    "@opentiny/vue-docs": "^3.21.9",
     "@types/color": "^3.0.3",
     "@types/eslint": "^8.4.10",
     "@types/node": "^18.11.18",
