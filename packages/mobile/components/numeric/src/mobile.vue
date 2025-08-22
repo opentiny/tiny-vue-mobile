@@ -29,6 +29,7 @@
       v-repeat-click="decrease"
       :class="{ 'is-disabled': state.minDisabled }"
       @keydown.enter="decrease"
+      @touchstart.stop.prevent="decrease"
     >
       <component :is="state.controlsAtRight ? 'icon-chevron-down' : 'icon-minus'" />
     </span>
@@ -39,6 +40,7 @@
       v-repeat-click="increase"
       :class="{ 'is-disabled': state.maxDisabled }"
       @keydown.enter="increase"
+      @touchstart.stop.prevent="increase"
     >
       <component :is="state.controlsAtRight ? 'icon-chevron-up' : 'icon-plus'" />
     </span>
