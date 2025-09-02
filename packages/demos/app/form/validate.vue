@@ -19,9 +19,9 @@
           ></tiny-input>
         </tiny-form-item>
         <tiny-form-item class="demo-form-validate-item">
-          <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
-          <tiny-button type="primary" @click="clearValidate('ruleForm')">移除校验</tiny-button>
-          <tiny-button type="primary" @click="resetFields('ruleForm')">重置</tiny-button>
+          <tiny-button type="primary" @click="handleSubmit">提交</tiny-button>
+          <tiny-button type="primary" @click="clearValidate">移除校验</tiny-button>
+          <tiny-button type="primary" @click="resetFields">重置</tiny-button>
         </tiny-form-item>
       </tiny-form>
     </div>
@@ -63,25 +63,23 @@ const createData = ref({
   users: '',
   user: ''
 })
+const ruleFormRef =  ref(null)
 const rules = ref({
   users: [{ required: true, message: '必填', trigger: 'change' }]
 })
 const boxVisibility = ref(false)
 const formNameRef = ref()
 
-function clearValidate(formName) {
-  // FIXIME $refs自动转换失败，请手工修改
-$refs[formName].clearValidate()
+function clearValidate() {
+ruleFormRef.value.clearValidate()
 }
 
-function resetFields(formName) {
-  // FIXIME $refs自动转换失败，请手工修改
-$refs[formName].resetFields()
+function resetFields() {
+ruleFormRef.value.resetFields()
 }
 
-function handleSubmit(formName) {
-  // FIXIME $refs自动转换失败，请手工修改
-$refs[formName].validate((valid) => {
+function handleSubmit() {
+ruleFormRef.value.validate((valid) => {
     if (valid) {
       boxVisibility.value = true
     }

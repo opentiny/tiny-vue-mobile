@@ -16,6 +16,7 @@
 
 @form-item-prefix-cls: ~'@{css-prefix}mobile-form-item';
 @input-prefix-cls: ~'@{css-prefix}mobile-input';
+@input-form-prefix-cls: ~'@{css-prefix}mobile-input-form';
 @input-group-prefix-cls: ~'@{css-prefix}mobile-input-group';
 @textarea-prefix-cls: ~'@{css-prefix}mobile-textarea';
 @button-prefix-cls: ~'@{css-prefix}mobile-button';
@@ -116,7 +117,7 @@
   .is-vertical {
     border-bottom: 1px solid #ddd;
   }
-
+ 
   &__error {
     color: var(--tvm-FormItem-error-text-color);
     font-size: 12px;
@@ -134,6 +135,13 @@
     display: inline-block;
     margin-left: 10px;
   }
+  
+  .@{input-form-prefix-cls} {
+    &__error {
+      color: var(--tvm-FormItem-error-text-color);
+      font-size: 12px;
+    }
+  }
 
   &.is-required:not(.is-no-asterisk) {
     .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
@@ -150,6 +158,7 @@
     .@{textarea-prefix-cls}__inner,
     .@{textarea-prefix-cls}__inner:focus {
       border-color: var(--tvm-FormItem-error-border-color);
+      background-color: var(--tvm-FormItem-error-bg-color);
     }
 
     .@{input-group-prefix-cls}__append,
@@ -167,6 +176,7 @@
       &,
       &:focus {
         border-color: var(--tvm-FormItem-error-border-color);
+        background-color: var(--tvm-FormItem-error-bg-color);
       }
     }
   }

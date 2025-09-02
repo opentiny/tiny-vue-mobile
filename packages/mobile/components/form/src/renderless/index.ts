@@ -259,9 +259,9 @@ export const bindDialogEvent = ({ api, dialog, state }: Pick<IFormRenderlessPara
 }
 
 export const showTooltip =
-  ({ vm, state }: Pick<IFormRenderlessParams, 'vm' | 'state'>) =>
+  ({ parent, state }: Pick<IFormRenderlessParams, 'parent' | 'state'>) =>
   (dom: HTMLElement, val: string): void => {
-    const tooltip = vm.$refs.tooltip
+    const tooltip = parent.$refs.tooltip
     tooltip.state.referenceElm = dom
     tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
     tooltip.doDestroy()

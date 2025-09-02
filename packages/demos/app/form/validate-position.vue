@@ -61,6 +61,7 @@ const createData = ref({
   users: '',
   user: ''
 })
+const ruleFormRef =  ref(null)
 const rules = ref({
   users: [{ required: true, message: '必填', trigger: 'change' }],
   user: [{ required: true, message: '必填', trigger: 'change' }]
@@ -68,9 +69,8 @@ const rules = ref({
 const boxVisibility = ref(false)
 const formNameRef = ref()
 
-function handleSubmit(formName) {
-  // FIXIME $refs自动转换失败，请手工修改
-$refs[formName].validate((valid) => {
+function handleSubmit() {
+  ruleFormRef.value.validate((valid) => {
     if (valid) {
       boxVisibility.value = true
     }
