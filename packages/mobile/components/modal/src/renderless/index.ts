@@ -57,11 +57,8 @@ export const computedIsMsg =
     props.type === 'message'
 
 export const computedBoxStyle =
-  ({ props, isMobileFirstMode }: Pick<IModalRenderlessParams, 'props' | 'isMobileFirstMode'>) =>
+  ({ props }: Pick<IModalRenderlessParams, 'props'>) =>
   (): { width?: string | number; height?: string | number } => {
-    if (isMobileFirstMode) {
-      return {}
-    }
 
     let width: string | number = ''
     let height: string | number = ''
@@ -105,11 +102,9 @@ export const mounted =
     api,
     parent,
     props,
-    isMobileFirstMode,
     state
-  }: Pick<IModalRenderlessParams, 'api' | 'parent' | 'props' | 'isMobileFirstMode' | 'state'>) =>
+  }: Pick<IModalRenderlessParams, 'api' | 'parent' | 'props' | 'state'>) =>
   () => {
-    if (!isMobileFirstMode) {
       let modalBoxElem = api.getBox()
 
       Object.assign(modalBoxElem.style, {
@@ -121,9 +116,6 @@ export const mounted =
       if (props.lockScroll && state.visible) {
         api.showScrollbar()
       }
-    } else {
-      on(window, 'resize', api.resetDragStyle)
-    }
 
     if (props.escClosable) {
       on(document, 'keydown', api.handleGlobalKeydownEvent)
@@ -134,10 +126,9 @@ export const mounted =
     document.body.appendChild(parent.$el)
   }
 
-export const beforeUnmouted =
-  ({ api, parent, isMobileFirstMode }: Pick<IModalRenderlessParams, 'api' | 'parent' | 'isMobileFirstMode'>) =>
+export const beforeUnmounted =
+  ({ api, parent }: Pick<IModalRenderlessParams, 'api' | 'parent'>) =>
   (): void => {
-    isMobileFirstMode && off(window, 'resize', api.resetDragStyle)
     off(document, 'keydown', api.handleGlobalKeydownEvent)
     off(window, 'hashchange', api.handleHashChange)
     api.removeMsgQueue()
@@ -184,9 +175,8 @@ export const handleEvent =
     api,
     emit,
     parent,
-    props,
-    isMobileFirstMode
-  }: Pick<IModalRenderlessParams, 'api' | 'emit' | 'parent' | 'props' | 'isMobileFirstMode'>) =>
+    props
+  }: Pick<IModalRenderlessParams, 'api' | 'emit' | 'parent' | 'props'>) =>
   (type: string, event: Event, options?: any[]) => {
     // close,confirm,cancel
     if (
@@ -202,10 +192,6 @@ export const handleEvent =
     const params: IModalEmitParam = {
       type,
       $modal: parent
-    }
-
-    if (isMobileFirstMode && type === 'confirm') {
-      params.options = options
     }
 
     emit(type, params, event)
@@ -238,9 +224,8 @@ export const open =
     nextTick,
     parent,
     props,
-    state,
-    isMobileFirstMode
-  }: Pick<IModalRenderlessParams, 'api' | 'emit' | 'nextTick' | 'parent' | 'props' | 'state' | 'isMobileFirstMode'>) =>
+    state
+  }: Pick<IModalRenderlessParams, 'api' | 'emit' | 'nextTick' | 'parent' | 'props' | 'state'>) =>
   (): void => {
     let { $listeners, events = {} } = parent
 
@@ -277,29 +262,29 @@ export const open =
         )
       } else {
         nextTick(() => {
-          if (!isMobileFirstMode) {
-            let modalBoxElem = api.getBox()
+          let modalBoxElem = api.getBox()
 
-            const viewportWindow = getViewportWindow()
+          const viewportWindow = getViewportWindow()
 
-            let clientVisibleWidth =
-              viewportWindow.document.documentElement.clientWidth || viewportWindow.document.body.clientWidth
+          let clientVisibleWidth =
+            viewportWindow.document.documentElement.clientWidth || viewportWindow.document.body.clientWidth
 
-            let clientVisibleHeight =
-              viewportWindow.document.documentElement.clientHeight || viewportWindow.document.body.clientHeight
+          let clientVisibleHeight =
+            viewportWindow.document.documentElement.clientHeight || viewportWindow.document.body.clientHeight
 
-            modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
+          modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
 
-            if (
-              modalBoxElem.offsetHeight + modalBoxElem.offsetTop + (props.marginSize as number) >
-              clientVisibleHeight
-            ) {
-              modalBoxElem.style.top = `${props.marginSize}px`
-            }
+          if (
+            modalBoxElem.offsetHeight + modalBoxElem.offsetTop + (props.marginSize as number) >
+            clientVisibleHeight
+          ) {
+            modalBoxElem.style.top = `${props.marginSize}px`
           }
 
           if (props.fullscreen) {
             nextTick(api.maximize)
+          }else {
+            nextTick(api.revert)
           }
         })
       }
@@ -403,9 +388,8 @@ export const maximize =
     api,
     nextTick,
     props,
-    state,
-    isMobileFirstMode
-  }: Pick<IModalRenderlessParams, 'api' | 'nextTick' | 'props' | 'state' | 'isMobileFirstMode'>) =>
+    state
+  }: Pick<IModalRenderlessParams, 'api' | 'nextTick' | 'props' | 'state'>) =>
   (): Promise<void> => {
     return nextTick().then(() => {
       if (!state.zoomLocat) {
@@ -420,14 +404,12 @@ export const maximize =
           height: modalBoxElement.clientHeight
         }
 
-        if (!isMobileFirstMode) {
-          Object.assign(modalBoxElement.style, {
-            width: `${visibleWidth - <number>marginSize * 2}px`,
-            height: `${visibleHeight - <number>marginSize * 2}px`,
-            top: `${marginSize}px`,
-            left: `${marginSize}px`
-          })
-        }
+        Object.assign(modalBoxElement.style, {
+          width: `${visibleWidth - <number>marginSize * 2}px`,
+          height: `${visibleHeight - <number>marginSize * 2}px`,
+          top: `${marginSize}px`,
+          left: `${marginSize}px`
+        })
 
         state.emitter.emit('boxdrag')
       }
@@ -438,9 +420,8 @@ export const revert =
   ({
     api,
     nextTick,
-    state,
-    isMobileFirstMode
-  }: Pick<IModalRenderlessParams, 'api' | 'nextTick' | 'state' | 'isMobileFirstMode'>) =>
+    state
+  }: Pick<IModalRenderlessParams, 'api' | 'nextTick' | 'state'>) =>
   (): Promise<void> => {
     return nextTick().then(() => {
       let zoomLocat = state.zoomLocat
@@ -450,14 +431,12 @@ export const revert =
 
         state.zoomLocat = null
 
-        if (!isMobileFirstMode) {
-          Object.assign(modalBoxElement.style, {
-            width: `${zoomLocat.width}px`,
-            height: `${zoomLocat.height}px`,
-            top: `${zoomLocat.top}px`,
-            left: `${zoomLocat.left}px`
-          })
-        }
+        Object.assign(modalBoxElement.style, {
+          width: `${zoomLocat.width}px`,
+          height: `${zoomLocat.height}px`,
+          top: `${zoomLocat.top}px`,
+          left: `${zoomLocat.left}px`
+        })      
 
         state.emitter.emit('boxdrag')
       }
@@ -470,13 +449,10 @@ export const toggleZoomEvent =
     emit,
     parent,
     state,
-    isMobileFirstMode
-  }: Pick<IModalRenderlessParams, 'api' | 'emit' | 'parent' | 'state' | 'isMobileFirstMode'>) =>
+  }: Pick<IModalRenderlessParams, 'api' | 'emit' | 'parent' | 'state'>) =>
   (event: PointerEvent): Promise<void> => {
     let params = { type: state.zoomLocat ? 'min' : 'max', $modal: parent }
     const callback = state.zoomLocat ? api.revert : api.maximize
-
-    isMobileFirstMode && api.resetDragStyle()
 
     return callback().then(() => {
       emitZoom({ params, parent, emit, event })
@@ -514,9 +490,8 @@ export const mousedownEvent =
     nextTick,
     props,
     state,
-    emit,
-    isMobileFirstMode
-  }: Pick<IModalRenderlessParams, 'api' | 'nextTick' | 'props' | 'state' | 'emit' | 'isMobileFirstMode'>) =>
+    emit
+  }: Pick<IModalRenderlessParams, 'api' | 'nextTick' | 'props' | 'state' | 'emit'>) =>
   (event: MouseEvent): void => {
     let modalBoxElement = api.getBox()
 
@@ -539,17 +514,11 @@ export const mousedownEvent =
         let top = event.clientY - disY
         let minX, maxX, minY, maxY
 
-        if (isMobileFirstMode) {
-          minX = offsetWidth / 2 + <number>props.marginSize
-          maxX = visibleWidth - offsetWidth / 2 - <number>props.marginSize
-          minY = offsetHeight / 2 + <number>props.marginSize
-          maxY = visibleHeight - offsetHeight / 2 - <number>props.marginSize
-        } else {
-          minX = props.marginSize
-          maxX = visibleWidth - offsetWidth - <number>props.marginSize
-          minY = props.marginSize
-          maxY = visibleHeight - offsetHeight - <number>props.marginSize
-        }
+      
+        minX = props.marginSize
+        maxX = visibleWidth - offsetWidth - <number>props.marginSize
+        minY = props.marginSize
+        maxY = visibleHeight - offsetHeight - <number>props.marginSize
 
         if (left < minX) {
           left = minX
