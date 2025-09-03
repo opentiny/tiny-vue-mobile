@@ -19,7 +19,7 @@
           ></tiny-input>
         </tiny-form-item>
         <tiny-form-item class="demo-form-mobile-item">
-          <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
+          <tiny-button type="primary" @click="handleSubmit">提交</tiny-button>
         </tiny-form-item>
       </tiny-form>
     </div>
@@ -65,11 +65,10 @@ const rules = ref({
   users: [{ required: true, message: '必填', trigger: 'change' }]
 })
 const boxVisibility = ref(false)
-const formNameRef = ref()
+const ruleFormRef =  ref(null)
 
-function handleSubmit(formName) {
-  // FIXIME $refs自动转换失败，请手工修改
-$refs[formName].validate((valid) => {
+function handleSubmit() {
+  ruleFormRef.value.validate((valid) => {
     if (valid) {
       boxVisibility.value = true
     }

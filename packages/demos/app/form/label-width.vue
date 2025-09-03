@@ -5,7 +5,7 @@
       <p class="page__desc">表单（设置标签宽度）</p>
     </div>
     <div class="demo-form-label-width-padds">
-      <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px" label-position="left">
+      <tiny-form ref="ruleFormRef" :model="createData"  label-width="100px" label-position="left">
         <tiny-form-item label="优秀" prop="users" vertical>
           <tiny-input v-model="createData.users" placeholder="请输入内容" type="form"></tiny-input>
         </tiny-form-item>
@@ -17,9 +17,6 @@
             placeholder="请输入内容"
             type="form"
           ></tiny-input>
-        </tiny-form-item>
-        <tiny-form-item class="demo-form-item">
-          <tiny-button type="primary" @click="handleSubmit('ruleForm')">提交</tiny-button>
         </tiny-form-item>
       </tiny-form>
     </div>
@@ -61,24 +58,11 @@ const createData = ref({
   users: '',
   user: ''
 })
-const rules = ref({
-  users: [{ required: true, message: '必填', trigger: 'change' }]
-})
 const boxVisibility = ref(false)
-const formNameRef = ref()
-
 function gev() {
   console.log(createData.value.users)
 }
 
-function handleSubmit(formName) {
-  // FIXIME $refs自动转换失败，请手工修改
-$refs[formName].validate((valid) => {
-    if (valid) {
-      boxVisibility.value = true
-    }
-  })
-}
 </script>
 
 <style scoped>

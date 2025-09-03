@@ -8,7 +8,6 @@
       <tiny-form
         ref="ruleFormRef"
         :model="createData"
-        :rules="rules"
         label-width="100px"
         label-position="left"
         label-suffix="自定义后缀"
@@ -60,22 +59,13 @@ const createData = ref({
   users: '',
   user: ''
 })
-const rules = ref({
-  users: [{ required: true, message: '必填', trigger: 'change' }]
-})
-const formNameRef = ref()
 
 function gev() {
   console.log(createData.value.users)
 }
 
 function handleSubmit(formName) {
-  // FIXIME $refs自动转换失败，请手工修改
-$refs[formName].validate((valid) => {
-    if (valid) {
-      TinyModal.alert('提交成功')
-    }
-  })
+    TinyModal.alert('提交成功')
 }
 </script>
 

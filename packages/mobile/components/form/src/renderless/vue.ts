@@ -102,7 +102,7 @@ export const renderless = (
     registerLabelWidth: registerLabelWidth({ api, state }),
     deregisterLabelWidth: deregisterLabelWidth({ api, state }),
     watchRules: watchRules({ api, props, state }),
-    showTooltip: showTooltip({ vm, state }),
+    showTooltip: showTooltip({ parent, state }),
     hideTooltip: hideTooltip({ state })
   })
 
