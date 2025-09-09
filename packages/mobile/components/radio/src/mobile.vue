@@ -24,20 +24,19 @@
         <div class="tiny-mobile-radio__inner"></div>
       </div>
 
-      <input
-        ref="radio"
-        class="tiny-mobile-radio__original"
-        :value="label"
-        type="radio"
-        aria-hidden="true"
-        v-model="state.model"
-        @focus="state.focus = true"
-        @blur="state.focus = false"
-        @change="handleChange"
-        :name="name"
-        :disabled="state.isDisabled"
-        tabindex="-1"
-      />
+         <input
+           ref="radio"
+           class="tiny-mobile-radio__original"
+           :value="label"
+           type="radio"
+           v-model="state.model"
+           @focus="state.focus = true"
+           @blur="state.focus = false"
+           @change="handleChange"
+           :name="name"
+           :disabled="state.isDisabled"
+           tabindex="-1"
+         />
     </div>
     <span class="tiny-mobile-radio__label" @keydown.stop>
       <slot>{{ text || label }}</slot>
