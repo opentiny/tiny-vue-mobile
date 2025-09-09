@@ -12,33 +12,37 @@
 <template>
   <label
     class="tiny-mobile-radio"
-    :class="[{ 'is-disabled': state.isDisabled }, { 'is-focus': state.focus }, { 'is-checked': state.model === label }]"
+    :class="[{ 'is-disabled': state.isDisabled },
+             { 'is-focus': state.focus },
+             { 'is-checked': state.model === label }]"
     role="radio"
     :aria-checked="state.model === label"
     :aria-disabled="state.isDisabled"
     :tabindex="state.tabIndex"
-    @keydown.space.stop.prevent="state.model = state.isDisabled ? state.model : label"
+    @keydown.space.stop.prevent="
+      state.model = state.isDisabled ? state.model : label
+    "
   >
     <div class="tiny-mobile-radio__input">
       <div class="tiny-mobile-radio__outer">
         <div class="tiny-mobile-radio__inner"></div>
       </div>
 
-         <input
-           ref="radio"
-           class="tiny-mobile-radio__original"
-           :value="label"
-           type="radio"
-           v-model="state.model"
-           @focus="state.focus = true"
-           @blur="state.focus = false"
-           @change="handleChange"
-           :name="name"
-           :disabled="state.isDisabled"
-           tabindex="-1"
-         />
+      <input
+        ref="radio"
+        class="tiny-mobile-radio__original"
+        :value="label"
+        type="radio"
+        v-model="state.model"
+        @focus="state.focus = true"
+        @blur="state.focus = false"
+        @change="handleChange"
+        :name="name"
+        :disabled="state.isDisabled"
+        tabindex="-1"
+      />
     </div>
-    <span class="tiny-mobile-radio__label" @keydown.stop>
+    <span class="tiny-mobile-radio__label">
       <slot>{{ text || label }}</slot>
     </span>
   </label>
