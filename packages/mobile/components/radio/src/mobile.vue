@@ -19,6 +19,7 @@
     :aria-checked="state.model === label"
     :aria-disabled="state.isDisabled"
     :tabindex="state.tabIndex"
+    :for="state.radioId"
     @keydown.space.stop.prevent="
       state.model = state.isDisabled ? state.model : label
     "
@@ -30,6 +31,7 @@
 
       <input
         ref="radio"
+        :id="state.radioId"
         class="tiny-mobile-radio__original"
         :value="label"
         type="radio"

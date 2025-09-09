@@ -103,3 +103,8 @@ export const toggleEvent = ({ props, vm, type }: Pick<IRadioRenderlessParams, 'p
     })
   }
 }
+
+export const getRadioId = ({ props }: Pick<IRadioRenderlessParams, 'props'>) => {
+  const instanceId = `radio-${Math.random().toString(36).slice(2, 8)}`
+  return`${instanceId}-${props.label}`
+}
