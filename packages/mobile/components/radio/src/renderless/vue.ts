@@ -26,8 +26,7 @@ import {
   tabIndex,
   getModel,
   setModel,
-  toggleEvent,
-  getRadioId
+  toggleEvent
 } from './index'
 
 export const api = ['state', 'handleChange']
@@ -55,8 +54,7 @@ export const renderless = (
     model: computed({
       get: () => api.getModel(),
       set: (val) => api.setModel(val)
-    }),
-    radioId: computed(() => api.getRadioId)
+    })
   })
 
   Object.assign(api, {
@@ -68,8 +66,7 @@ export const renderless = (
     isDisabled: isDisabled({ props, state }),
     isDisplayOnly: isDisplayOnly({ props }),
     setModel: setModel({ constants, dispatch, emit, props, vm, state }),
-    handleChange: handleChange({ constants, dispatch, emit, state, nextTick }),
-    getRadioId: getRadioId({ props })
+    handleChange: handleChange({ constants, dispatch, emit, state, nextTick })
   })
 
   onMounted(() => {

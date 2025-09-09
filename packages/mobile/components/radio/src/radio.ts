@@ -20,8 +20,7 @@ import type {
   isDisplayOnly,
   tabIndex,
   getModel,
-  setModel,
-  getRadioId
+  setModel
 } from './renderless'
 
 export type { ISharedRenderlessParamHooks } from '@mobile-root/shared.type'
@@ -73,8 +72,7 @@ export interface IRadioState {
   isDisplayOnly: boolean
   tabIndex: number
   formDisabled: boolean
-  model: string,
-  radioId: string | number
+  model: string
 }
 
 export type IRadioRenderlessParams = ISharedRenderlessFunctionParams<IRadioConstants> & {
@@ -94,7 +92,6 @@ export interface IRadioApi {
   tabIndex: ReturnType<typeof tabIndex>
   getModel: ReturnType<typeof getModel>
   setModel: ReturnType<typeof setModel>
-  getRadioId: ReturnType<typeof getRadioId>
 }
 
 export type IRadioRenderlessParamUtils = ISharedRenderlessParamUtils<IRadioConstants>

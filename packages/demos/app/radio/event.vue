@@ -5,7 +5,7 @@
     <tiny-radio v-model="value" label="2" @change="changeAction">女</tiny-radio>
     <p>{{ text }}</p>
     <br/> <br/>
-    <tiny-checkbox-group v-model="checked">
+    <tiny-checkbox-group v-model="checked" class="demo-checkbox-group">
       <tiny-checkbox label="复选框1">复选框1</tiny-checkbox>
       <tiny-checkbox label="复选框2">复选框2</tiny-checkbox>
     </tiny-checkbox-group>
@@ -28,6 +28,12 @@ function changeAction(value) { // NISVUE3 FIXME: value重复定义，请手工�
 </script>
 
 <style>
+.demo-checkbox-group {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  width: 200px;
+}
 .demo {
   height: 100%;
   overflow-y: auto;
