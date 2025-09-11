@@ -19,7 +19,8 @@
 
 .@{checkbox-prefix-cls} {
   .inject-Checkbox-vars();
-
+        
+  width: 100%;
   position: relative;
   display: inline-block;
   white-space: nowrap;
@@ -85,10 +86,11 @@
     opacity: 0;
     outline: 0;
     position: absolute;
-    margin: 0;
-    width: 0;
-    height: 0;
-    z-index: -1;
+    inset: 0;
+    width: var(--tvm-Checkbox-heatmap-width);
+    height: var(--tvm-Checkbox-heatmap-height);
+    opacity: 0;
+    z-index: 2;    
   }
 
   &__label {
