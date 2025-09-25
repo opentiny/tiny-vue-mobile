@@ -34,10 +34,10 @@ const newConfigJs = configJs
 
 shell.ShellString(newConfigJs).to(file)
 
-// const mobileVersion = 'latest'
-// const themeVersion = 'latest'
-const mobileVersion = '1.0.0-alpha.10'
-const themeVersion = '1.0.0-alpha.10'
+const mobileVersion = 'latest'
+const themeVersion = 'latest'
+// const mobileVersion = '1.0.0-alpha.10'
+// const themeVersion = '1.0.0-alpha.10'
 
 if (mode === 'alpha') {
   const rootPkg = JSON.parse(shell.cat('package.json'))
