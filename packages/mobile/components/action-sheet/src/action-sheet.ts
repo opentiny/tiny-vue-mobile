@@ -76,7 +76,8 @@ export const actionSheetProps = {
   contentStyle: {
     type: Object,
     default: () => ({})
-  }
+  },
+  disabled: { type: Boolean, default: false }
 }
 
 export interface IActionSheetState {
