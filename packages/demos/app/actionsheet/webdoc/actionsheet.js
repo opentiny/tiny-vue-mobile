@@ -6,6 +6,16 @@ export default {
       name: 'actionsheet',
       type: 'component',
       props: [
+         {
+          name: 'disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '控制按钮禁用状态',
+            'en-US': 'Control button disabled state'
+          },
+          demoId: 'custom-content'
+        },
         {
           name: 'ellipsis',
           type: 'boolean',
@@ -158,8 +168,8 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>通过<code>content</code>插槽自定义内容<p>',
-        'en-US': '<p>Customize content through slots</p>'
+        'zh-CN': '<p>通过<code>content</code>插槽自定义内容，<code>disabled</code>禁用确定按钮状态。</p>',
+        'en-US': '<p>Customize content through slots, <code>disabled</code> disables the confirm button state.</p>'
       },
       codeFiles: ['custom-content.vue']
     }

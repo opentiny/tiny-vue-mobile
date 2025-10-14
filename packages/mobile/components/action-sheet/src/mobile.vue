@@ -41,9 +41,9 @@
       </div>
       <slot name="content"></slot>
       <div v-if="!menus.length" class="tiny-mobile-action-sheet__bottom">
-        <tiny-button type="text" @click="cancelFn">{{ t('ui.actionSheet.cancel') }}</tiny-button>
+        <tiny-button type="text" @click="cancelFn">{{ t('ui.button.cancel') }}</tiny-button>
         <div class="tiny-mobile-action-sheet__bottom-divider"></div>
-        <tiny-button type="text" @click="confirmFn">确定</tiny-button>
+        <tiny-button type="text" :disabled="disabled" @click="confirmFn">{{ t('ui.button.confirm') }}</tiny-button>
       </div>
     </div>
     <div class="tiny-mobile-action-sheet__action" v-if="contentPosition">
