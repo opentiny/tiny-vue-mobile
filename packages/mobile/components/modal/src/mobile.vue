@@ -40,9 +40,12 @@ export default defineComponent({
   render() {
     let { state, scopedSlots, vSize, type, resize, animat, showHeader,_constants: constants, status } = this
     let { showFooter, title, message, lockScroll, lockView, mask, t } = this
+    let { confirmContent, cancelContent, confirmBtnProps, cancelBtnProps } = this
     let { zoomLocat, visible, contentVisible, modalTop, isMsg } = state
     let defaultSlot = scopedSlots.default
     let footerSlot = scopedSlots.footer
+    const confirmButtonText = confirmContent ?? confirmBtnProps.text ?? t('ui.button.confirm')
+    const cancelButtonText = cancelContent ?? cancelBtnProps.text ?? t('ui.button.cancel')
 
     const STATUS_MAPPING_COMPINENT = {
       QUESTION: iconHelpSolid(),
@@ -98,6 +101,23 @@ export default defineComponent({
                     }
                   },
                   [
+                    status
+                      ? h(
+                          'div',
+                          {
+                            class: ['tiny-mobile-modal__status-wrapper']
+                          },
+                          [
+                            typeof status === 'string'
+                              ? h(STATUS_MAPPING_COMPINENT[status.toUpperCase()], {
+                                  class: [constants.STATUS_MAPPING_CLASSS[status.toUpperCase()]]
+                                })
+                              : h(status, {
+                                  class: ['tiny-modal__status-icon']
+                                })
+                          ]
+                        )
+                    : null,
                     h(
                       'span',
                       {
@@ -170,13 +190,14 @@ export default defineComponent({
                               Button,
                               {
                                 props: {
-                                  class: ['tiny-mobile-button', 'tiny-mobile-button--default']
+                                  type: 'secondary',
+                                  size: 'small',
                                 },
                                 on: {
                                   click: this.cancelEvent
                                 }
                               },
-                              t('ui.button.cancel')
+                              cancelButtonText
                             )
                           : null,
                         h(
@@ -184,13 +205,14 @@ export default defineComponent({
                           {
                             props: {
                               type: 'primary',
-                              class: ['tiny-mobile-button', type !== 'confirm' ? 'tiny-mobile-button__single' : '']
+                              size: 'small',
+                              class: [type !== 'confirm' ? 'tiny-mobile-button__single' : '']
                             },
                             on: {
                               click: this.confirmEvent
                             }
                           },
-                          t('ui.button.confirm')
+                          confirmButtonText
                         )
                       ]
                 )
