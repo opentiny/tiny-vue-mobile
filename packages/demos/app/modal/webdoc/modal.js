@@ -27,6 +27,26 @@ export default {
           demoId: 'mask-closable'
         },
         {
+          name: 'confirm-content',
+          type: 'string',
+          defaultValue: "'确认'",
+          desc: {
+            'zh-CN': '自定义确认按钮内容',
+            'en-US': 'Customize confirmation button content'
+          },
+          demoId: 'custom-btn'
+        },
+        {
+          name: 'cancel-content',
+          type: 'string',
+          defaultValue: "'取消'",
+          desc: {
+            'zh-CN': '自定义取消按钮内容',
+            'en-US': 'Customize cancel button content'
+          },
+           demoId: 'custom-btn'
+        },
+        {
           name: 'fullscreen',
           type: 'boolean',
           defaultValue: 'false',
@@ -580,11 +600,11 @@ export default {
       demoId: 'status',
       name: {
         'zh-CN': '模态框提示图标',
-        'en-US': 'button type'
+        'en-US': 'Modal prompt icon'
       },
       desc: {
-        'zh-CN': '<p>模态框提示图标</p>',
-        'en-US': '<p>button type</p>'
+        'zh-CN': '<p>通过<code>status</code>设置模态框提示图标</p>',
+        'en-US': '<p>Set the modal prompt icon through <code>status</code></p>'
       },
       codeFiles: ['status.vue']
     },
@@ -599,6 +619,22 @@ export default {
         'en-US': '<p>button type</p>'
       },
       codeFiles: ['title.vue']
+    },
+    {
+      demoId: 'custom-btn',
+      name: {
+        'zh-CN': '自定义底部按钮内容',
+        'en-US': 'Custom bottom button content'
+      },
+      desc: {
+        'zh-CN': `
+          通过<code>confirm-content</code>属性，修改确认按钮文字；<code>cancel-content</code>属性，修改取消按钮文字。<br>
+        `,
+        'en-US': ` 
+          Modify the confirmation button text by using the <code>confirm-content</code> property; The <code> cancer-content </code> property modifies the cancel button text. <br>
+        `
+      },
+      codeFiles: ['custom-btn.vue']
     },
     {
       demoId: 'top',

@@ -389,14 +389,12 @@
 
   &__footer {
     flex-shrink: 0;
-    text-align: center;
     padding: 24px 32px 32px;
+    display: flex;
+    justify-content: center;
 
     .@{button-prefix-cls} {
-      border-radius: 18px;
-      width: var(--tvm-Modal-btn-width);
-      height: var(--tvm-Modal-btn-height);
-      line-height: var(--tvm-Modal-btn-height);
+      margin-left: var(--tvm-Modal-btn-space);
 
       &__single {
         width: var(--tvm-Modal-single-btn-width);
