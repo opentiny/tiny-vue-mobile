@@ -37,7 +37,6 @@
     "release": "node build/release.js && node build/postbuild.js && shx cp README.md dist"
   },
   "devDependencies": {
-    "@opentiny/vue-theme": "~3.27.0",
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
@@ -48,6 +47,9 @@
     "rimraf": "^2.6.2",
     "stylelint": "^14.14.0",
     "stylelint-config-standard": "^29.0.0"
+  },
+  "dependencies": {
+    "@opentiny/vue-theme": "~3.27.0"
   },
   "stylelint": {
     "extends": [
