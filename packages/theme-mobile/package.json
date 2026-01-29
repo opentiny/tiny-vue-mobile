@@ -48,6 +48,9 @@
     "stylelint": "^14.14.0",
     "stylelint-config-standard": "^29.0.0"
   },
+  "dependencies": {
+    "@opentiny/vue-theme": "~3.27.0"
+  },
   "stylelint": {
     "extends": [
       "stylelint-config-standard"
