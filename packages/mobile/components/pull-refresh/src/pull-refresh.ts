@@ -52,5 +52,9 @@ export const pullRefreshProps = {
   disabledPullUp: {
     type: Boolean,
     default: false
+  },
+  pullUpDistance: {
+    type: [String, Number],
+    default: 50
   }
 }
