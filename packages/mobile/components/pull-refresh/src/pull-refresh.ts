@@ -55,6 +55,10 @@ export const pullRefreshProps = {
   },
   pullUpDistance: {
     type: [String, Number],
-    default: 50
+    default: $constants.DEFAULT_HEAD_HEIGHT,
+    validator: (value: string | number) => {
+      const n = Number(value)
+      return Number.isFinite(n) && n >= 0
+    }
   }
 }
