@@ -37,7 +37,7 @@
     "pub": "pnpm --filter=@opentiny/vue-mobile publish --no-git-checks --access=public",
     "build:theme": "pnpm -C packages/theme-mobile build:fast",
     "pub:theme": "pnpm --filter=\"./packages/theme-mobile/dist\" publish --access=public --no-git-checks",
-    "test:e2e": "playwright test --project=chromium",
+    "test:e2e": "playwright test --config=playwright.config.cjs --project=chromium",
     "install:browser": "playwright install",
     "codegen": "playwright codegen http://localhost:3101/tiny-vue-mobile",
     "open:report": "playwright show-report"

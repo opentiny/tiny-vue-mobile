@@ -14,7 +14,7 @@ import { TinyLoading, TinyButton } from '@opentiny/vue-mobile'
 
 const showLoading = ref(false)
 const instance = getCurrentInstance()
-const { $loading } = instance.appContext.config.globalProperties
+const $loading = TinyLoading.service
 const vLoading = TinyLoading.directive
 
 function handleClick() {

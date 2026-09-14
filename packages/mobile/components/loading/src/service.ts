@@ -85,7 +85,7 @@ export default (configs = {}) => {
     configs.body = true
   }
 
-  if (configs.fullscreen && fullscreenLoading && !fullscreenLoading.state.closed) {
+  if (configs.fullscreen && fullscreenLoading && fullscreenLoading.state.visible && !fullscreenLoading.state.closed) {
     return fullscreenLoading
   }
 
@@ -95,6 +95,7 @@ export default (configs = {}) => {
 
   loadingEl && parent.removeChild(loadingEl)
 
+  const container = document.createElement('div')
   let instance = createComponent({
     component: Loading,
     propsData: {
@@ -103,7 +104,7 @@ export default (configs = {}) => {
       loadingImg: configs.loadingImg,
       tiny_mode: configs.tiny_mode || appProperties().tiny_mode?.value
     },
-    el: document.createElement('div')
+    el: container
   })
 
   for (const key in configs) {
@@ -122,11 +123,20 @@ export default (configs = {}) => {
     addClass(parent, constants.PARENT_HIDDEN_CLS)
   }
 
-  parent.appendChild(instance.$el)
+  const elToAppend = instance.$el || container.firstElementChild || container
+  parent.appendChild(elToAppend)
 
   hooks.nextTick(() => {
     instance.state.visible = true
   })
+
+  const originalClose = instance.close
+  instance.close = () => {
+    if (instance === fullscreenLoading) {
+      fullscreenLoading = null
+    }
+    originalClose && originalClose()
+  }
 
   if (configs.fullscreen) {
     fullscreenLoading = instance

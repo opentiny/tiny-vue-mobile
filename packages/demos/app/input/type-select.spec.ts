@@ -2,11 +2,11 @@ import { test, expect } from '@playwright/test'
 
 test('插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  page.goto('input#type-select')
+  await page.goto('input#type-select')
 
   const input = page.locator('.demo-input .tiny-mobile-input')
   const selectIcon = input.locator('.tiny-mobile-input__select-icon')
-  const menu = page.locator('.tiny-mobile-action-sheet__menu').nth(1)
+  const menu = page.locator('.tiny-mobile-action-sheet__menu')
   const menuItem = page.getByText('选项2')
 
   await expect(input.locator('.tiny-mobile-input__select')).toBeVisible()

@@ -128,12 +128,21 @@ const initState = ({
         (state.focused || state.hovering)
     ),
     textareaHeight: vm.theme === 'saas' ? '28px' : '30px',
-    upperLimit: computed(() => parent.$attrs.maxlength),
+    upperLimit: computed(
+      () =>
+        (vm?.$attrs && vm.$attrs.maxlength) ||
+        (parent?.$attrs && parent.$attrs.maxlength)
+    ),
     textLength: computed(() => textLength(props.modelValue)),
     inputExceed: computed(() => state.isWordLimitVisible && state.textLength > state.upperLimit),
     formItemSize: computed(() => (parent.formItem || {}).formItemSize),
     validateIcon: computed(() => constants.VALIDATE_ICON[state.validateState]),
-    showWordLimit: computed(() => props.showWordLimit && parent.$attrs.maxlength),
+    showWordLimit: computed(
+      () =>
+        props.showWordLimit &&
+        ((vm?.$attrs && vm.$attrs.maxlength) ||
+          (parent?.$attrs && parent.$attrs.maxlength))
+    ),
     inputDisabled: computed(
       () =>
         props.disabled || (parent.tinyForm || {}).disabled || state.isDisplayOnly || (parent.tinyForm || {}).displayOnly
@@ -155,8 +164,11 @@ const initState = ({
 
     isWordLimitVisible: computed(
       () =>
-        ((props.showWordLimit && parent.$attrs.maxlength) || props.counter) &&
-        (parent.type === 'text' || parent.type === 'textarea') &&
+        ((props.showWordLimit &&
+          ((vm?.$attrs && vm.$attrs.maxlength) ||
+            (parent?.$attrs && parent.$attrs.maxlength))) ||
+          props.counter) &&
+        ((props.type || 'text') === 'text' || props.type === 'textarea') &&
         !state.inputDisabled &&
         !props.readonly &&
         !props.showPassword

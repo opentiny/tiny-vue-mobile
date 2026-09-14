@@ -22,7 +22,10 @@ configJs = configJs.replace(
 )
 // 本地开发需要添加alias
 if (mode === 'dev') {
-  configJs = configJs.replace('alias: {', "alias: {\n        '@mobile-root': path.resolve('../packages/mobile'),")
+  configJs = configJs.replace(
+    'alias: {',
+    "optimizeDeps: {\n      exclude: ['@opentiny/vue-mobile']\n    },\n    alias: {\n        '@opentiny/vue-mobile': path.resolve(__dirname, '../packages/mobile/index.ts'),\n        '@mobile-root': path.resolve(__dirname, '../packages/mobile'),"
+  )
 }
 const newConfigJs = configJs
   .replace(', fixIconSrcPlugins', '')
@@ -48,6 +51,18 @@ if (shell.test('-f', cmpConfig)) {
     .cat(cmpConfig)
     .replace(/const mobileFirstVueFiles = isSaas \? import\.meta\.glob\(`[^`]+`\) : null/, 'const mobileFirstVueFiles = null')
   shell.ShellString(patched).to(cmpConfig)
+}
+
+const demoVue = 'sites/src/components/demo.vue'
+if (shell.test('-f', demoVue)) {
+  const patchedDemo = shell
+    .cat(demoVue)
+    .replace('v-if="demoConfig.isMobile"', 'v-if="demoConfig.isMobile && !isRunningTest"')
+    .replace(
+      "const isPlus = computed(() => import.meta.env.VITE_APP_MODE === 'plus')",
+      "const isPlus = computed(() => import.meta.env.VITE_APP_MODE === 'plus')\nconst isRunningTest = localStorage.getItem('tiny-e2e-test') === 'true'"
+    )
+  shell.ShellString(patchedDemo).to(demoVue)
 }
 
 const mobileVersion = '1.0.3'

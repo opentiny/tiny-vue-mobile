@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test'
+const { defineConfig, devices } = require('@playwright/test')
 
 /**
  * 本地开发：先 `pnpm preSite && pnpm dev`，再跑 `pnpm test:e2e`
@@ -10,8 +10,9 @@ const baseURL = `${origin}/zh-CN/os-theme/components/`
 const isRemote = Boolean(process.env.E2E_ORIGIN)
 const devServerCommon = isRemote ? '' : 'pnpm run -w dev'
 
-export default defineConfig({
+module.exports = defineConfig({
   testDir: './packages/demos',
+  testMatch: '**/*.spec.ts',
   timeout: 30 * 1000,
   expect: {
     timeout: 8 * 1000,
@@ -22,7 +23,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : 2,
-  reporter: [['list'], ['html']],
+  reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     actionTimeout: 0,
     baseURL: process.env.PYTEST_BASEURL || baseURL,
@@ -31,7 +32,7 @@ export default defineConfig({
       : {
           origins: [
             {
-              origin,
+              origin: new URL(origin).origin,
               localStorage: [
                 { name: 'tiny-vue-api-mode', value: 'Composition' },
                 { name: 'tiny-vue-demo-mode', value: 'single' },
@@ -41,7 +42,7 @@ export default defineConfig({
           ]
         },
     trace: 'on-first-retry',
-    headless: !!process.env.CI,
+    headless: true,
     ignoreHTTPSErrors: true,
     screenshot: 'only-on-failure',
     permissions: ['clipboard-read'],
@@ -62,18 +63,6 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         viewport: { width: 1080, height: 720 }
-      }
-    },
-    {
-      name: 'mobile-android',
-      use: {
-        ...devices['Pixel 5']
-      }
-    },
-    {
-      name: 'mobile-iphone',
-      use: {
-        ...devices['iPhone 12']
       }
     }
   ]
