@@ -132,7 +132,7 @@
       ref="textarea"
       :name="name"
       v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
-      :class="['tiny-mobile-textarea__inner', { 'is-focus': state.focused }]"
+      :class="['tiny-mobile-textarea__inner', { 'is-focus': state.focused, 'is-autosize': Boolean(autosize) }]"
       :tabindex="tabindex"
       @compositionstart="handleCompositionStart"
       @compositionupdate="handleCompositionUpdate"

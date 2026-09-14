@@ -7,7 +7,7 @@ test.describe('全局加载', () => {
 
     const loading = page.locator('.tiny-mobile-loading')
 
-    await page.getByRole('button', { name: '指令方式加载全屏Loading' }).click()
+    await page.locator('#global-registry .demo-loading .tiny-mobile-button').first().click()
     await expect(loading).toBeVisible()
     await expect(loading).toHaveClass(/is-fullscreen/)
     await page.waitForTimeout(3000)
@@ -20,7 +20,8 @@ test.describe('全局加载', () => {
 
     const loading = page.locator('.tiny-mobile-loading')
 
-    await page.getByRole('button', { name: '静态方法加载全屏Loading' }).click()
+    const btn = page.locator('#global-registry .demo-loading .tiny-mobile-button').filter({ hasText: '静态方法' })
+    await btn.click()
     await expect(loading).toBeVisible()
     await page.waitForTimeout(3000)
     await expect(loading).not.toBeVisible()

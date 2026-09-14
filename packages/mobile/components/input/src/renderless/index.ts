@@ -264,7 +264,8 @@ export const resizeTextarea =
       return
     }
 
-    const { autosize, type } = parent
+    const autosize = props.autosize || (parent && parent.autosize)
+    const type = props.type || (parent && parent.type)
 
     if (type !== 'textarea') {
       return

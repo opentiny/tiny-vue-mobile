@@ -16,6 +16,7 @@ import { setupComponent } from '@mobile-root/common'
 const Loadings: any = {
   install(app) {
     app.directive('loading', directive)
+    app.config.globalProperties.$loading = service
   },
   service,
   directive

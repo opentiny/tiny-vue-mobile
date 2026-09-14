@@ -1,11 +1,12 @@
 import { test, expect } from '@playwright/test'
 
-test('指定挂载节点', async ({ page }) => {
+test('文字居中', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('alert#target')
+  await page.goto('alert#center')
 
-  const target = page.locator('.alert-wrap')
-  const alert = target.locator('> .tiny-mobile-alert')
+  const alert = page.locator('#center .tiny-mobile-alert')
 
   await expect(alert).toBeVisible()
+  await expect(alert).toHaveClass(/is-center/)
+  await expect(alert).toHaveCSS('justify-content', 'center')
 })
